@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .className {
+        @apply relative flex items-center justify-start h-12 w-12 mt-2 hover:bg-green-200;
+    }
+}
