@@ -1,4 +1,4 @@
-import react, { useEffect, FC, useState } from "react";
+import React, { useEffect, FC, useState } from "react";
 import { StringLiteralLike } from "typescript";
 
 import { CharacterContainer } from "./CharacterContainer";
@@ -9,7 +9,7 @@ import { StatusRadio } from "./StatusRadio";
 import { IDataTypes } from "../type";
 
 export const Browser: FC<{}> = () => {
-  const [dataFromApi, setDataFromApi] = useState<IDataTypes>();
+  const [dataFromApi, setDataFromApi] = useState<IDataTypes | null>(null);
   const [charName, setCharName] = useState("");
   const [statusRadio, setStatusRadio] = useState("");
   const [pageNumber, setPageNumber] = useState<number>(1);
@@ -18,7 +18,7 @@ export const Browser: FC<{}> = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `https://rickandmortyapi.com/api/character/?name=${charName}&status=${statusRadio}&page=${pageNumber}`
+        `https://rickandmortyapi.com/api/character/?name=${charName}&status=${statusRadio}`
       );
       console.log(response);
       if (!response) {
@@ -51,7 +51,7 @@ export const Browser: FC<{}> = () => {
   }, [charName, statusRadio, pageNumber]);
 
   const handleLoadMore = () => {
-    setPageNumber((prevState) => prevState + 1);
+    setPageNumber((prevState: number) => prevState + 1);
   };
 
   console.log("i co ty mamy po dodaniu", dataFromApi);
