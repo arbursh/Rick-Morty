@@ -20,7 +20,7 @@
     ];
   }
 
-  export interface IFilteredDataTypes {   
+  export interface IFilteredDataTypes { 
     
         id: number;
         name: string;
@@ -31,10 +31,6 @@
         status: string;
         image: string;
      
-  }
-
-  export interface IFiltredArray {
-    [key: string]: IFilteredDataTypes;
   }
 
   

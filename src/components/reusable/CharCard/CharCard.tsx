@@ -1,11 +1,12 @@
-type CardProps = {
-  name?: any;
-  status?: any;
-  imageUrl?: any;
-};
-//TODO fix
+import { FC } from "react";
 
-export const CharCard = ({ name, status, imageUrl }: CardProps) => {
+type CardProps = {
+  name: string;
+  status: string;
+  imageUrl: string;
+};
+
+export const CharCard: FC<CardProps> = ({ name, status, imageUrl }) => {
   return (
     <>
       <a href="#" className="group">

@@ -5,12 +5,12 @@ import { LoadingSpinner } from "./reusable/CharCard/LoadingSpinner";
 import { SearchBar } from "./SearchBar";
 import { StatusRadio } from "./StatusRadio";
 
-import { IDataTypes, IFiltredArray, IFilteredDataTypes } from "../type";
+import { IDataTypes, IFilteredDataTypes } from "../type";
 
-export const Browser: FC<{}> = () => {
+export const Browser = () => {
   const [dataFromApi, setDataFromApi] = useState<IDataTypes | null>(null);
-  const [charName, setCharName] = useState("");
-  const [statusRadio, setStatusRadio] = useState("");
+  const [charName, setCharName] = useState<string>("");
+  const [statusRadio, setStatusRadio] = useState<string>("");
   const [filteredChar, setFilteredChar] = useState<IFilteredDataTypes[] | null>(
     null
   );
@@ -34,6 +34,7 @@ export const Browser: FC<{}> = () => {
   };
 
   const loadMoreCharacters = async () => {
+    console.log("hi");
     try {
       const response = await fetch(
         `https://rickandmortyapi.com/api/character/?page=${pageNumber}`
@@ -42,7 +43,7 @@ export const Browser: FC<{}> = () => {
         throw new Error("Error");
       }
       const json = await response.json();
-      if (pageNumber > 1) {
+      if (pageNumber > 1 && dataFromApi?.info.next) {
         let modifiedResults = dataFromApi?.results.concat(json?.results);
         setDataFromApi(
           (prevState) =>
